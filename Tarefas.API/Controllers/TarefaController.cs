@@ -2,6 +2,8 @@
 using Tarefas.Application.UseCases.Tarefas.Cadastrar;
 using Tarefas.Application.UseCases.Tarefas.Deletar;
 using Tarefas.Application.UseCases.Tarefas.Editar;
+using Tarefas.Application.UseCases.Tarefas.GetById;
+using Tarefas.Application.UseCases.Tarefas.ListarTudo;
 using Tarefas.Communication.Requests;
 using Tarefas.Communication.Responses;
 
@@ -29,8 +31,37 @@ public class TarefaController : ControllerBase
         casoDeUso.Execute(id, requisicao);
         return NoContent();
     }
-    /* public IActionResult ListarDados(){}
-    public IActionResult ObterDados(int id){}*/
+
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ResponseAllTarefaJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public IActionResult ListarTodos()
+    {
+        var casoDeUso = new GetAllTarefasUseCase();
+        var resposta = casoDeUso.Execute();
+
+        if (resposta.Tarefas.Any()) //se a lista Tarefas tem algum item
+        {
+            return Ok(resposta);
+        }
+
+        return NoContent();
+    }
+
+
+    [HttpGet]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(RequestTarefaJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrosJson), StatusCodes.Status404NotFound)]
+    public IActionResult ObterDados(int id)
+    {
+        var casoDeUso = new GetTarefaByIdUseCase();
+        var resposta = casoDeUso.Execute(id);
+
+        return Ok(resposta);
+    }
+
     [HttpDelete]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
