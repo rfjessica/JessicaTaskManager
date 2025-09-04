@@ -36,7 +36,7 @@ public class TarefaController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseAllTarefaJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public IActionResult ListarTodos()
+    public IActionResult ListarTudo()
     {
         var casoDeUso = new GetAllTarefasUseCase();
         var resposta = casoDeUso.Execute();
