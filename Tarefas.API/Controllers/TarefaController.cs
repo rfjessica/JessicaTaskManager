@@ -32,7 +32,6 @@ public class TarefaController : ControllerBase
         return NoContent();
     }
 
-
     [HttpGet]
     [ProducesResponseType(typeof(ResponseAllTarefaJson), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -48,7 +47,6 @@ public class TarefaController : ControllerBase
 
         return NoContent();
     }
-
 
     [HttpGet]
     [Route("{id}")]
