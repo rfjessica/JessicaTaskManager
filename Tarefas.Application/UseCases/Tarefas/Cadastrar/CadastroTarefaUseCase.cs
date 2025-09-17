@@ -9,6 +9,7 @@ public class CadastroTarefaUseCase
     {
         return new ResponseRegisteredTarefaJson
         {
+            Id = requisicao.Id,
             Nome = requisicao.Nome,
             Descricao = requisicao.Descricao,
             Status = requisicao.Status,
