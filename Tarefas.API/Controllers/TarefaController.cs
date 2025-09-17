@@ -12,11 +12,11 @@ namespace Tarefas.API.Controllers;
 [ApiController]
 
 public class TarefaController : ControllerBase
-{
+{    
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredTarefaJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrosJson), StatusCodes.Status400BadRequest)]
-    public IActionResult Cadastro([FromBody] RequestTarefaJson requisicao){
+    public IActionResult Cadastro([FromBody] RequestCreateTarefaJson requisicao){
         var casoDeUso = new CadastroTarefaUseCase();
         var resposta = casoDeUso.Execute(requisicao);
         return Created(string.Empty, resposta);
@@ -24,12 +24,12 @@ public class TarefaController : ControllerBase
 
     [HttpPut]
     [Route("{id}")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrosJson), StatusCodes.Status400BadRequest)]
-    public IActionResult Edicao([FromRoute] int id, [FromBody] RequestTarefaJson requisicao){
+    public IActionResult Edicao([FromRoute] int id, [FromBody] RequestUpdateTarefaJson requisicao){
         var casoDeUso = new EdicaoTarefaUseCase();
-        casoDeUso.Execute(id, requisicao);
-        return NoContent();
+        var resposta = casoDeUso.Execute(id, requisicao);
+        return Ok(resposta);
     }
 
     [HttpGet]
@@ -50,7 +50,7 @@ public class TarefaController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    [ProducesResponseType(typeof(RequestTarefaJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RequestCreateTarefaJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrosJson), StatusCodes.Status404NotFound)]
     public IActionResult ObterDados(int id)
     {
