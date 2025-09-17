@@ -4,7 +4,7 @@ using Tarefas.Communication.Responses;
 namespace Tarefas.Application.UseCases.Tarefas.Editar;
 public class EdicaoTarefaUseCase
 {
-    public ResponseRegisteredTarefaJson Execute(int id, RequestUpdateTarefaJson requisicao)
+    public ResponseRegisteredTarefaJson Atualiza(int id, RequestUpdateTarefaJson requisicao)
     {
         return new ResponseRegisteredTarefaJson
         {

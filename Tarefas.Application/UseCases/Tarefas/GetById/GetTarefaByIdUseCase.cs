@@ -4,7 +4,7 @@ using Tarefas.Communication.Responses;
 namespace Tarefas.Application.UseCases.Tarefas.GetById;
 public class GetTarefaByIdUseCase
 {
-    public ResponseTarefaJson Execute(int id)
+    public ResponseTarefaJson ExibeDados(int id)
     {
         return new ResponseTarefaJson
         {

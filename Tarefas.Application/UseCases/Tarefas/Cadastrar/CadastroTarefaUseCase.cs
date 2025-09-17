@@ -1,10 +1,11 @@
-﻿using Tarefas.Communication.Requests;
+﻿using System.Globalization;
+using Tarefas.Communication.Requests;
 using Tarefas.Communication.Responses;
 
 namespace Tarefas.Application.UseCases.Tarefas.Cadastrar;
 public class CadastroTarefaUseCase
 {
-    public ResponseRegisteredTarefaJson Execute(RequestCreateTarefaJson requisicao)
+    public ResponseRegisteredTarefaJson Cadastra(RequestCreateTarefaJson requisicao)
     {
         return new ResponseRegisteredTarefaJson
         {
@@ -12,7 +13,7 @@ public class CadastroTarefaUseCase
             Descricao = requisicao.Descricao,
             Status = requisicao.Status,
             Prioridade = requisicao.Prioridade,
-            DataLimite = DateTime.Now.AddDays(5)
+            DataLimite = DateTime.Now.AddDays(15)
         };
     }
 }

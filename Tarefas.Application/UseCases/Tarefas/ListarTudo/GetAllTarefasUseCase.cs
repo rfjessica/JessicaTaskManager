@@ -4,7 +4,7 @@ using Tarefas.Communication.Responses;
 namespace Tarefas.Application.UseCases.Tarefas.ListarTudo;
 public class GetAllTarefasUseCase
 {
-    public ResponseAllTarefaJson Execute()
+    public ResponseAllTarefaJson ExibeLista()
     {
         return new ResponseAllTarefaJson
         {

@@ -18,7 +18,7 @@ public class TarefaController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrosJson), StatusCodes.Status400BadRequest)]
     public IActionResult Cadastro([FromBody] RequestCreateTarefaJson requisicao){
         var casoDeUso = new CadastroTarefaUseCase();
-        var resposta = casoDeUso.Execute(requisicao);
+        var resposta = casoDeUso.Cadastra(requisicao);
         return Created(string.Empty, resposta);
     }
 
@@ -28,7 +28,7 @@ public class TarefaController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrosJson), StatusCodes.Status400BadRequest)]
     public IActionResult Edicao([FromRoute] int id, [FromBody] RequestUpdateTarefaJson requisicao){
         var casoDeUso = new EdicaoTarefaUseCase();
-        var resposta = casoDeUso.Execute(id, requisicao);
+        var resposta = casoDeUso.Atualiza(id, requisicao);
         return Ok(resposta);
     }
 
@@ -38,7 +38,7 @@ public class TarefaController : ControllerBase
     public IActionResult ListarTudo()
     {
         var casoDeUso = new GetAllTarefasUseCase();
-        var resposta = casoDeUso.Execute();
+        var resposta = casoDeUso.ExibeLista();
 
         if (resposta.Tarefas.Any()) //se a lista Tarefas tem algum item
         {
@@ -55,7 +55,7 @@ public class TarefaController : ControllerBase
     public IActionResult ObterDados(int id)
     {
         var casoDeUso = new GetTarefaByIdUseCase();
-        var resposta = casoDeUso.Execute(id);
+        var resposta = casoDeUso.ExibeDados(id);
 
         return Ok(resposta);
     }
@@ -66,7 +66,7 @@ public class TarefaController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrosJson), StatusCodes.Status404NotFound)]
     public IActionResult Exclusao(int id){
         var casoDeUso = new DeleteTarefaUseCase();
-        casoDeUso.Execute(id);
+        casoDeUso.Exclui(id);
         return NoContent();
     }
 }

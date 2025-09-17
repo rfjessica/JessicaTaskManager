@@ -1,5 +1,5 @@
 ﻿namespace Tarefas.Application.UseCases.Tarefas.Deletar;
 public class DeleteTarefaUseCase
 {
-    public void Execute(int id) { }
+    public void Exclui(int id) { }
 }
